@@ -1,0 +1,61 @@
+<ion-list class="transparent">
+  <ion-list-header *ngIf="options.title">{{options.title}}</ion-list-header>
+  <ion-item-group *ngFor="let group of options.groups">
+    <ion-item-divider *ngIf="group.title"> {{group.title}} </ion-item-divider>
+    <div *ngFor="let item of group.items">
+
+      <button *ngIf="item.type == 'button'" ion-item (click)="onClick(item)">
+        <ion-icon *ngIf="item.icon" item-start [name]="item.icon"></ion-icon>
+        <ion-label>{{item.name}}</ion-label>
+      </button>
+
+      <ion-item *ngIf="item.type == 'boolean'">
+        <ion-icon *ngIf="item.icon" item-start [name]="item.icon"></ion-icon>
+        <ion-label>{{item.name}}</ion-label>
+        <ion-checkbox item-end color="primary" checked="true" [(ngModel)]="item.value" (ngModelChange)="onChange(item, $event)"></ion-checkbox>
+      </ion-item>
+
+      <ion-item *ngIf="item.type == 'date'">
+        <ion-icon *ngIf="item.icon" item-start [name]="item.icon"></ion-icon>
+        <ion-label> {{item.name}} </ion-label>
+        <ion-datetime 
+          displayFormat="DD de MMMM, YYYY" 
+          [(ngModel)]="item.value" (ngModelChange)="onChange(item, $event)">
+        </ion-datetime>
+      </ion-item>
+      
+      <ion-item *ngIf="item.type == 'string'">
+        <ion-icon *ngIf="item.icon" item-start [name]="item.icon"></ion-icon>
+        <ion-label>{{item.name}} </ion-label>
+        <ion-input [(ngModel)]="item.value" (ngModelChange)="onChange(item, $event)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="item.type == 'integer'">
+        <ion-icon *ngIf="item.icon" item-start  [name]="item.icon"></ion-icon>
+        <ion-label>{{item.name}}</ion-label>
+        <ion-select *ngIf="item.range" [(ngModel)]="item.value" (ngModelChange)="onChange(item, $event)">
+          <ion-option *ngFor="let n of createRange(item.range)" value="{{n}}"> {{n}}</ion-option>
+        </ion-select>
+        <ion-input *ngIf="!item.range" type="number" [(ngModel)]="item.value">
+        </ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="item.type == 'enum'">
+        <ion-icon *ngIf="item.icon" item-start  [name]="item.icon"></ion-icon>
+        <ion-label>{{item.name}}</ion-label>
+        <ion-select [(ngModel)]="item.value" (ngModelChange)="onChange(item, $event)">
+          <ion-option *ngFor="let l of item.values; let i = index" value="{{i}}" >{{l}}  </ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="item.type == 'multiple'">
+        <ion-icon *ngIf="item.icon" item-start [name]="item.icon"></ion-icon>
+        <ion-label>{{item.name}}</ion-label>
+        <ion-select [(ngModel)]="item.value" multiple (ngModelChange)="onChange(item, $event)">
+          <ion-option *ngFor="let l of item.values; let i = index" value="{{i}}" >{{l}}  </ion-option>
+        </ion-select>
+      </ion-item>
+
+    </div>
+  </ion-item-group>
+</ion-list>

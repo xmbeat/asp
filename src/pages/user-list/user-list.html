@@ -1,0 +1,68 @@
+<ion-header>
+  <div [hidden]="searchEnabled">
+    <ion-navbar color="dark">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Usuarios</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="enableSearch();">
+          <ion-icon name="search"></ion-icon>
+        </button>
+        <button ion-button icon-only>
+          <ion-icon name="funnel"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </div>
+  <ion-toolbar color="dark" [hidden]="!searchEnabled">
+    <ion-searchbar #sb animated="true" placeholder="Buscar"  showCancelButton="true" 
+      (ionInput)="search()" 
+      (ionClear)="clear()" 
+      (ionCancel)="cancel()" 
+      [(ngModel)]="searchQuery"></ion-searchbar>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="loading" style="text-align: center;padding-top: 20px;padding-bottom: 20px;">
+    <ion-spinner color="light"></ion-spinner>
+  </div>
+
+  <div [ngClass]="{hidden:!error}" class="message-container">
+    <div class="error-message">
+      <div class="left"><p>La conexión con el servidor ha fallado.</p></div>
+      <div class="right">
+        <button ion-button icon-only clear color="light" (click)="error=null; loadNextItems()">
+          <ion-icon name="refresh"></ion-icon>
+        </button>
+        <button ion-button icon-only clear color="light" (click)="error=null;">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ion-list>
+    <button  ion-item *ngFor="let item of items;let i = index" (click)="itemTapped(i)">
+      <ion-avatar item-start>
+        <img src="assets/imgs/user.png">
+      </ion-avatar>
+      <h2>{{item.first_name}} {{item.last_name}}</h2>
+      <p>{{item.phone}}</p>
+      <div item-end>
+        <h2> Privada Los Angeles </h2>
+        <p> San Lorenzo #224</p>
+      </div>
+    </button>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="$event.waitFor(loadNextItems())">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <ion-fab bottom right #fab>
+    <button ion-fab (click)="addItem()" ><ion-icon name="add" ></ion-icon> </button>
+  </ion-fab>
+
+</ion-content>

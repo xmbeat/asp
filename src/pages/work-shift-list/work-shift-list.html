@@ -1,0 +1,41 @@
+<!--
+  Generated template for the WorkShiftListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Listado de planes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="content-theme">
+  <ion-fab bottom right #fab>
+    <button ion-fab (click)="itemAdd()" ><ion-icon name="add" ></ion-icon> </button>
+  </ion-fab>
+  <ion-card>
+    <ion-list>
+      <ion-item>
+        <ion-icon item-start name="xm-event"></ion-icon>
+        <h2>Concierto Coldplay</h2>
+        <p>Del 24 al 30 de Junio 2018</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-start name="xm-industry"></ion-icon>
+        <h2>Guardia nocturna de liverpool</h2>
+        <p>Del 1 de enero al 31 de diciembre 2018</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-start name="xm-houses"></ion-icon>
+        <h2>Proteccion privada Lomas</h2>
+        <p>Del 1 de enero al 31 de diciembre 2018</p>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,36 @@
+
+<ion-split-pane when="md" [class.dark-content]="darkMode" [class.smallFont]="fontSize == 1" [class.mediumFont]="fontSize == 2" [class.bigFont] = "fontSize == 3">
+  <ion-menu [content]="content" id="mainMenu">
+    <ion-content class="side-menu-gradient">
+      <div class="profile-header">
+        <img class="profile-bg" src="assets/imgs/md-profile.png">
+        <div class="profile-image">
+          <img *ngIf="!user.image" src="assets/imgs/user.png" >
+          <img *ngIf="user.image" [src]="user.image" >
+        </div>
+        <div class="profile-text">
+            <h2> {{user.first_name}} </h2> 
+            <div class="profile-more">
+              <button ion-button clear icon-only (click)="showOptions($event)"><ion-icon name="more"></ion-icon></button>            
+            </div>
+        </div>
+        
+      </div>
+      <ion-list>
+        <button menuClose ion-item (click)="openPage(p)" *ngFor="let p of filterPages(pages)">
+          <ion-icon color="light" [name]="p.icon" item-left></ion-icon>
+          {{p.title}}
+        </button>
+      </ion-list>
+      <div style="height: 40px"></div>
+    </ion-content>
+
+    <div class="panic-button">
+      <button color="danger" full ion-button> Botón de pánico </button>
+    </div>
+  </ion-menu>
+
+
+  <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+  <ion-nav [root]="rootPage" #content swipeBackEnabled="false" main></ion-nav>
+</ion-split-pane>

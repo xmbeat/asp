@@ -1,0 +1,71 @@
+<ion-header>
+    <div [hidden]="searchEnabled">
+      <ion-navbar color="dark">
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{options.title}}</ion-title>
+        <ion-buttons end>
+          <button ion-button icon-only (click)="enableSearch();">
+            <ion-icon name="search"></ion-icon>
+          </button>
+          <button ion-button icon-only>
+            <ion-icon name="funnel"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-navbar>
+    </div>
+    <ion-toolbar color="dark" [hidden]="!searchEnabled">
+      <ion-searchbar #sb animated="true" placeholder="Buscar"  showCancelButton="true" 
+        (ionInput)="search()" 
+        (ionClear)="clear()" 
+        (ionCancel)="cancel()" 
+        [(ngModel)]="searchQuery"></ion-searchbar>
+    </ion-toolbar>
+  
+  </ion-header>
+  
+  <ion-content>
+  
+    <div *ngIf="loading" style="text-align: center;padding-top: 20px;padding-bottom: 20px;">
+      <ion-spinner color="light"></ion-spinner>
+    </div>
+  
+    <div [ngClass]="{hidden:!error}" class="message-container">
+      <div class="error-message">
+        <div class="left"><p>La conexión con el servidor ha fallado.</p></div>
+        <div class="right">
+          <button ion-button icon-only clear color="light" (click)="error=null; loadNextItems()">
+            <ion-icon name="refresh"></ion-icon>
+          </button>
+          <button ion-button icon-only clear color="light" (click)="error=null;">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <ion-list>
+      <button  ion-item *ngFor="let item of items;let i = index" (click)="itemTapped(i)">
+        <ion-avatar item-start *ngIf="options.imageGenerator && options.imageGenerator(item)">
+          <img [src]="options.imageGenerator(item)">
+        </ion-avatar>
+        <ion-icon *ngIf="options.iconGenerator" item-start [name]="options.iconGenerator(item)"></ion-icon>
+        <h2>{{this.options.headerGenerator(item)}}</h2>
+        <p *ngIf="this.options.contentGenerator">{{this.options.contentGenerator(item)}}</p>
+        <div *ngIf="false" item-end>
+          <h2> Privada Los Angeles </h2>
+          <p> San Lorenzo #224</p>
+        </div>
+      </button>
+    </ion-list>
+    
+    <ion-infinite-scroll (ionInfinite)="$event.waitFor(loadNextItems())">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <ion-fab bottom right #fab *ngIf="options.canAdd">
+      <button ion-fab (click)="addItem()" ><ion-icon name="add" ></ion-icon> </button>
+    </ion-fab>
+  
+  </ion-content>
+  

@@ -1,0 +1,56 @@
+<!--
+  Generated template for the MyVisitsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mis visitas</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only ><ion-icon name="funnel"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab bottom right #fab>
+    <button ion-fab ><ion-icon name="add" ></ion-icon> </button>
+  </ion-fab>
+  <ion-card>
+    <ion-list>
+      <ion-list-header color="secondary">
+        Visitas agendadas pendientes
+      </ion-list-header>
+      <ion-item *ngFor="let item of [1, 2]">
+        <h2> Nombre de la visita {{item}}</h2>        
+        <ion-badge item-end color="primary">30 de Abril</ion-badge>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-card>
+    <ion-list>
+      <ion-list-header color="dark">
+        Mes de Febrero
+      </ion-list-header>
+      <ion-item *ngFor="let item of [1, 2, 3, 4, 5]">
+        <h2> Nombre de la visita {{item}}</h2>        
+        <ion-badge item-end color="primary">12 de Feb</ion-badge>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-card>
+      <ion-list>
+        <ion-list-header color="dark">
+          Mes de Marzo
+        </ion-list-header>
+        <ion-item *ngFor="let item of [1, 2, 3, 4, 5]">
+          <h2> Nombre de la visita {{item}}</h2>        
+          <ion-badge item-end color="primary">23 de Marzo</ion-badge>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+</ion-content>

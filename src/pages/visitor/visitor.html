@@ -1,0 +1,98 @@
+<!--
+  Generated template for the VisitorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Detalles de la visita</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="save()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="content-theme">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-sm>
+        <ion-card> 
+          
+          <ion-list color="primary">
+            <ion-list-header color="danger">
+              Visitante
+            </ion-list-header>
+            <ion-item>
+              <ion-label floating>Nombre</ion-label>
+              <ion-input [(ngModel)]="model.first_name" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Apellidos</ion-label>
+                <ion-input [(ngModel)]="model.last_name" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Matrícula</ion-label>
+                <ion-input [(ngModel)]="model.car_number" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Fecha</ion-label>
+              <ion-datetime [(ngModel)]="date" displayFormat="MM/DD/YYYY"></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Hora</ion-label>
+              <ion-datetime [(ngModel)]="time" displayFormat="hh:mm A"></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Nivel de sospecha</ion-label>              
+              <ion-select [(ngModel)]="model.status">
+                <ion-option value="0">Ninguna</ion-option>
+                <ion-option value="1">Leve</ion-option>
+                <ion-option value="2">Moderada</ion-option>
+                <ion-option value="3">Alta</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-card>
+      </ion-col>
+      <ion-col col-12 col-sm>
+        
+        <ion-card>
+            <ion-list color="primary">
+              <ion-list-header color="dark">Visitado 
+                <button (click)="search()" ion-button item-right icon-start><ion-icon name="search"></ion-icon> buscar</button>
+              </ion-list-header>
+              <ion-item>
+                <ion-label floating>Nombre</ion-label>
+                <ion-input type="text"  [(ngModel)]="model.user.first_name"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label floating>Apellidos</ion-label>
+                  <ion-input [(ngModel)]="model.user.last_name" type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label floating>Dirección</ion-label>
+                  <ion-input [(ngModel)]="model.user.street" type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label floating>Email</ion-label>
+                  <ion-input type="text" [(ngModel)]="model.user.email"></ion-input>
+              </ion-item>
+            </ion-list>
+
+        </ion-card>
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

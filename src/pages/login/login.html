@@ -1,0 +1,60 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+
+  <ion-navbar *ngIf="" color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>LoginPage</ion-title>
+  </ion-navbar>
+
+</ion-header> -->
+
+<ion-content class="login-container">
+    <div class="login-form">
+      
+      <div class="login-inputs">
+        <div class="login-image" (click)="counter=counter+1">
+          <ion-icon name="xm-logo" color="light" style="width:100%; height:100%"></ion-icon>
+        </div>
+        <ion-list>
+          <ion-item *ngIf="counter % 4 == 0">
+            <ion-label stacked>Iniciar como</ion-label>
+            <ion-select placeholder="" [(ngModel)]="model.type">
+              <ion-option value="2">Administrador</ion-option>
+              <ion-option value="1">Guardia</ion-option>
+              <ion-option value="0">Colono</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>
+              Cuenta
+            </ion-label>
+            <ion-input type="text" placeholder="" [(ngModel)]="model.email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>
+              Contraseña
+            </ion-label>
+            <ion-input type="password" placeholder="" [(ngModel)]="model.password"></ion-input>
+          </ion-item>
+        </ion-list>
+      </div>
+      <button style="margin-top:8px;" ion-button block color="dark" (click) ="onlineLogin()">
+        Entrar
+      </button>
+      <div class="text-separator">
+        <span>O bien, </span>
+      </div>
+      <button ion-button block (click) = "facebookLogin()" icon-start>
+        <ion-icon name="logo-facebook"></ion-icon>
+        Entrar con Facebook
+      </button>
+    </div>
+  
+  </ion-content>
